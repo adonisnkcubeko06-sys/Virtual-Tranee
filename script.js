@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PANAROTTIS TRAINING PORTAL — application script
+   hey PANAROTTIS TRAINING PORTAL — application script
    Plain, framework-free JavaScript (ES2017+). No build step required, so
    this runs unmodified in Safari on iOS and Chrome on Android, as well as
    every modern desktop browser. If a TypeScript source is ever wanted,
