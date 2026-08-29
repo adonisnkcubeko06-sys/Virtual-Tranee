@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Panarottis Staff Training &amp; Menu Mastery Portal</title>
+
+<!-- Google Fonts: Fraunces (display, trattoria warmth) + Inter (clean UI body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   Palette: Burgundy (brand primary), Crust Gold (accent),
+   Cream (surface), Charcoal (ink), Basil (success), Tomato (error)
+   ============================================================ */
+:root{
+  --forest: #1F3D2E;
+  --forest-dark: #12261B;
+  --forest-light: #3C5F49;
+  --rust: #C1522E;
+  --rust-light: #E7A87E;
+  --cream: #F6F1E2;
+  --cream-alt: #ECE2C8;
+  --charcoal: #241F1C;
+  --charcoal-soft: #58524A;
+  --basil: #5A7D3A;
+  --basil-light: #EAF0DE;
+  --tomato: #A32F26;
+  --tomato-light: #F7E4DF;
+  --line: rgba(36,31,28,0.12);
+  --shadow: 0 10px 30px rgba(18,38,27,0.14);
+  --shadow-sm: 0 2px 8px rgba(36,31,28,0.08);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --font-display: 'Bricolage Grotesque', 'Inter', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+html{ -webkit-text-size-adjust: 100%; }
+body{
+  margin:0;
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--charcoal);
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 72px; /* room for mobile tab bar */
+}
+img{ max-width:100%; display:block; }
+button{ font-family: inherit; }
+a{ color: inherit; }
+
+::selection{ background: var(--rust-light); }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* Focus visibility */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+  outline: 3px solid var(--rust);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   TOP BAR / HERO
+   ============================================================ */
+.topbar{
+  background: linear-gradient(155deg, var(--forest) 0%, var(--forest-dark) 100%);
+  color: #fff;
+  padding: 22px 20px 26px;
+  position: relative;
+  overflow: hidden;
+}
+.topbar::after{
+  /* subtle wood-fired texture stripe, signature element echo */
+  content:"";
+  position:absolute; inset:0;
+  background-image: repeating-linear-gradient(115deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 26px);
+  pointer-events:none;
+}
+.topbar-inner{
+  max-width: 1080px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  position:relative; z-index:1;
+}
+.brand{ display:flex; align-items:center; gap:12px; }
+.brand-mark{
+  width:46px; height:46px; border-radius:50%;
+  background: var(--rust);
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--font-display); font-weight:700; font-size:20px;
+  color: var(--forest-dark);
+  box-shadow: 0 3px 0 rgba(0,0,0,0.18);
+  flex-shrink:0;
+}
+.brand-text h1{
+  margin:0; font-family: var(--font-display); font-weight:700;
+  font-size: clamp(19px, 3.4vw, 26px); letter-spacing: -0.3px; line-height:1.1;
+}
+.brand-text p{
+  margin: 2px 0 0; font-size: 12.5px; color: rgba(255,255,255,0.78);
+  letter-spacing: 0.4px; text-transform: uppercase; font-weight:600;
+}
+.trainee-chip{
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight:600;
+  display:flex; align-items:center; gap:8px;
+  white-space:nowrap;
+}
+.trainee-chip .dot{ width:8px; height:8px; border-radius:50%; background: var(--rust); }
+
+/* ============================================================
+   NAVIGATION — desktop tabs / mobile bottom bar
+   ============================================================ */
+.nav-wrap{
+  max-width: 1080px; margin: -18px auto 0; padding: 0 20px;
+  position: relative; z-index: 2;
+}
+.tabs{
+  background:#fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display:flex;
+  overflow-x:auto;
+  scrollbar-width:none;
+  border:1px solid var(--line);
+}
+.tabs::-webkit-scrollbar{ display:none; }
+.tab-btn{
+  flex:1 1 auto;
+  min-width: 128px;
+  background:none; border:none; cursor:pointer;
+  padding: 14px 10px 12px;
+  display:flex; flex-direction:column; align-items:center; gap:5px;
+  font-size:12.5px; font-weight:700; color: var(--charcoal-soft);
+  letter-spacing:0.2px;
+  border-bottom: 3px solid transparent;
+  transition: color .15s ease, border-color .15s ease, background .15s ease;
+}
+.tab-btn .ico{ font-size:19px; line-height:1; }
+.tab-btn:hover{ color: var(--forest); background: var(--cream); }
+.tab-btn[aria-selected="true"]{
+  color: var(--forest);
+  border-bottom-color: var(--forest);
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+main{ max-width: 1080px; margin: 0 auto; padding: 26px 20px 40px; }
+.view{ display:none; animation: fadeIn .25s ease; }
+.view.active{ display:block; }
+@keyframes fadeIn{ from{opacity:0; transform: translateY(6px);} to{opacity:1; transform:none;} }
+
+.view-head{ margin-bottom: 20px; }
+.view-head h2{
+  font-family: var(--font-display); font-weight:700;
+  font-size: clamp(22px, 4vw, 30px); margin: 0 0 6px; letter-spacing: -0.4px;
+  color: var(--forest-dark);
+}
+.view-head p{ margin:0; color: var(--charcoal-soft); font-size:14.5px; max-width:620px; }
+
+/* ============================================================
+   MENU MODULE
+   ============================================================ */
+.menu-cat-nav{
+  display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px;
+}
+.chip-btn{
+  border:1.5px solid var(--line);
+  background:#fff;
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:13px; font-weight:600;
+  cursor:pointer; color: var(--charcoal-soft);
+  transition: all .15s ease;
+  display:inline-flex; align-items:center; gap:6px;
+}
+.chip-btn svg{ width:14px; height:14px; flex-shrink:0; }
+.chip-btn:hover{ border-color: var(--forest-light); color: var(--forest); }
+.chip-btn.active{ background: var(--forest); border-color: var(--forest); color:#fff; }
+
+.menu-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap:16px;
+}
+.item-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding:16px 16px 14px;
+  box-shadow: var(--shadow-sm);
+  position:relative;
+  border-left: 4px solid var(--rust);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.item-card:hover{ transform: translateY(-2px); box-shadow: var(--shadow); }
+.card-icon{
+  width:26px; height:26px; border-radius:8px;
+  background: var(--cream-alt); color: var(--forest);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.card-icon svg{ width:15px; height:15px; }
+.cat-group-heading{ display:flex; align-items:center; gap:12px; margin: 28px 0 14px; }
+.cat-group-heading:first-child{ margin-top:0; }
+.cat-group-heading h4{
+  font-family: var(--font-display); font-size:14px; font-weight:700;
+  text-transform:uppercase; letter-spacing:1px; color: var(--forest); margin:0; white-space:nowrap;
+}
+.cat-group-heading .line{ flex:1; height:1px; background: var(--line); }
+.item-card h3{
+  font-family: var(--font-display); font-size:17px; font-weight:700;
+  margin:0 0 4px; color: var(--charcoal); letter-spacing: -0.1px;
+  display:flex; justify-content:space-between; gap:8px; align-items:baseline;
+}
+.item-card .price{ font-size:13px; color: var(--forest); font-weight:700; white-space:nowrap; }
+.item-card .desc{ font-size:13.5px; color: var(--charcoal-soft); line-height:1.5; margin:0 0 10px; }
+.item-card .meta-row{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.tag{
+  font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.3px;
+  padding:3px 8px; border-radius:6px; background: var(--cream-alt); color: var(--charcoal-soft);
+}
+.tag.allergen{ background: var(--tomato-light); color: var(--tomato); }
+.tag.mod{ background: var(--basil-light); color: var(--basil); }
+.note-banner{
+  background: var(--cream-alt);
+  border: 1px dashed var(--rust);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 13px; color: var(--charcoal-soft);
+  margin-bottom: 20px;
+}
+
+/* ============================================================
+   CARDS / QUIZ / FLASHCARDS / TF / SCENARIOS (shared "ticket" look)
+   ============================================================ */
+.session-card{
+  background:#fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border:1px solid var(--line);
+  max-width: 640px;
+  margin: 0 auto;
+  overflow:hidden;
+}
+.session-head{
+  background: var(--charcoal);
+  color:#fff;
+  padding:14px 20px;
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:13px; font-weight:700; letter-spacing:0.3px;
+}
+.session-head .streak{ color: var(--rust-light); }
+.session-body{ padding: 24px 22px 22px; }
+
+.progress-bar-track{
+  height:6px; background: var(--cream-alt); border-radius:999px; overflow:hidden; margin-bottom:18px;
+}
+.progress-bar-fill{
+  height:100%; background: linear-gradient(90deg, var(--rust), var(--forest)); border-radius:999px;
+  transition: width .3s ease;
+}
+
+.q-eyebrow{ font-size:11.5px; text-transform:uppercase; letter-spacing:0.6px; font-weight:700; color: var(--forest); margin:0 0 8px; }
+.q-text{ font-family: var(--font-display); font-size: clamp(18px,3vw,21px); font-weight:600; line-height:1.35; margin:0 0 20px; color: var(--charcoal); }
+
+.opt-list{ display:flex; flex-direction:column; gap:10px; }
+.opt-btn{
+  text-align:left;
+  border:1.5px solid var(--line);
+  background:#fff;
+  padding:13px 16px;
+  border-radius: var(--radius-sm);
+  font-size:14.5px; font-weight:500; color: var(--charcoal);
+  cursor:pointer;
+  transition: border-color .15s ease, background .15s ease, transform .1s ease;
+  display:flex; align-items:center; gap:10px;
+}
+.opt-btn:hover:not(:disabled){ border-color: var(--forest-light); background: var(--cream); }
+.opt-btn:active:not(:disabled){ transform: scale(0.99); }
+.opt-btn:disabled{ cursor:default; }
+.opt-btn .letter{
+  width:24px; height:24px; border-radius:50%; background: var(--cream-alt);
+  display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700;
+  color: var(--charcoal-soft); flex-shrink:0;
+}
+.opt-btn.correct{ border-color: var(--basil); background: var(--basil-light); }
+.opt-btn.correct .letter{ background: var(--basil); color:#fff; }
+.opt-btn.incorrect{ border-color: var(--tomato); background: var(--tomato-light); }
+.opt-btn.incorrect .letter{ background: var(--tomato); color:#fff; }
+
+.tf-row{ display:flex; gap:12px; }
+.tf-row .opt-btn{ flex:1; justify-content:center; text-align:center; font-weight:700; }
+
+.feedback-box{
+  margin-top:18px; padding:14px 16px; border-radius: var(--radius-sm);
+  font-size:13.5px; line-height:1.5; display:none;
+}
+.feedback-box.show{ display:block; animation: fadeIn .2s ease; }
+.feedback-box.good{ background: var(--basil-light); color:#20502b; border:1px solid rgba(62,124,74,0.3); }
+.feedback-box.bad{ background: var(--tomato-light); color:#7a2818; border:1px solid rgba(192,67,43,0.3); }
+.feedback-box strong{ display:block; margin-bottom:3px; font-size:13px; text-transform:uppercase; letter-spacing:0.3px; }
+
+.session-foot{
+  display:flex; justify-content: space-between; align-items:center; margin-top:20px; gap:10px;
+}
+
+.btn{
+  border:none; cursor:pointer; font-weight:700; font-size:14px;
+  padding:12px 20px; border-radius:999px;
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+.btn:active{ transform: scale(0.97); }
+.btn-primary{ background: var(--forest); color:#fff; box-shadow: 0 4px 12px rgba(122,31,43,0.3); }
+.btn-primary:hover{ background: var(--forest-dark); }
+.btn-primary:disabled{ opacity:0.4; cursor:not-allowed; box-shadow:none; }
+.btn-ghost{ background:transparent; color: var(--charcoal-soft); border:1.5px solid var(--line); }
+.btn-ghost:hover{ border-color: var(--forest-light); color: var(--forest); }
+
+/* Flashcard flip */
+.flash-stage{ perspective: 1200px; max-width:640px; margin:0 auto; }
+.flash-card{
+  position:relative; width:100%; min-height: 240px;
+  cursor:pointer;
+}
+.flash-inner{
+  position:relative; width:100%; height:100%; min-height:240px;
+  transition: transform .5s cubic-bezier(.4,.2,.2,1);
+  transform-style: preserve-3d;
+}
+.flash-card.flipped .flash-inner{ transform: rotateY(180deg); }
+.flash-face{
+  position:absolute; inset:0;
+  backface-visibility: hidden;
+  border-radius: var(--radius);
+  border:1px solid var(--line);
+  box-shadow: var(--shadow);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding: 30px 26px;
+}
+.flash-face.front{ background:#fff; }
+.flash-face.back{ background: var(--forest); color:#fff; transform: rotateY(180deg); }
+.flash-face .kicker{ font-size:11.5px; text-transform:uppercase; letter-spacing:0.6px; font-weight:700; opacity:0.7; margin-bottom:12px; }
+.flash-face h3{ font-family: var(--font-display); font-size: clamp(19px,3.4vw,24px); font-weight:600; margin:0; line-height:1.35; }
+.flash-face p{ margin: 14px 0 0; font-size:14px; line-height:1.55; opacity:0.92; }
+.flash-hint{ text-align:center; font-size:12.5px; color: var(--charcoal-soft); margin-top:14px; }
+
+.flash-controls{ display:flex; justify-content:center; gap:12px; margin-top:20px; flex-wrap:wrap; }
+
+/* ============================================================
+   PROGRESS DASHBOARD
+   ============================================================ */
+.stat-grid{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:14px; margin-bottom:26px;
+}
+.stat-card{
+  background:#fff; border:1px solid var(--line); border-radius: var(--radius); padding:18px;
+  box-shadow: var(--shadow-sm);
+}
+.stat-card .num{ font-family: var(--font-display); font-size:30px; font-weight:700; color: var(--forest); line-height:1; }
+.stat-card .label{ font-size:12px; color: var(--charcoal-soft); text-transform:uppercase; letter-spacing:0.4px; font-weight:700; margin-top:8px; }
+
+.dial-wrap{
+  display:flex; align-items:center; gap:26px; flex-wrap:wrap;
+  background:#fff; border:1px solid var(--line); border-radius: var(--radius); padding:24px;
+  box-shadow: var(--shadow-sm); margin-bottom: 24px;
+}
+.mastery-dial{ width:132px; height:132px; flex-shrink:0; }
+.dial-copy h3{ font-family: var(--font-display); margin:0 0 6px; font-size:20px; color: var(--charcoal); }
+.dial-copy p{ margin:0; font-size:13.5px; color: var(--charcoal-soft); max-width:360px; }
+
+.module-list{ display:flex; flex-direction:column; gap:10px; }
+.module-row{
+  display:flex; align-items:center; gap:14px;
+  background:#fff; border:1px solid var(--line); border-radius: var(--radius-sm);
+  padding:14px 16px;
+}
+.module-row .m-ico{
+  width:36px; height:36px; border-radius:9px; background: var(--cream-alt);
+  display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0;
+}
+.module-row .m-info{ flex:1; min-width:0; }
+.module-row .m-info .m-name{ font-weight:700; font-size:14px; }
+.module-row .m-info .m-sub{ font-size:12px; color: var(--charcoal-soft); margin-top:2px; }
+.module-row .m-track{ width:80px; height:6px; background: var(--cream-alt); border-radius:999px; overflow:hidden; flex-shrink:0; }
+.module-row .m-track > div{ height:100%; background: var(--basil); }
+.badge-done{ font-size:11px; font-weight:700; color: var(--basil); background: var(--basil-light); padding:4px 8px; border-radius:6px; white-space:nowrap; }
+.badge-todo{ font-size:11px; font-weight:700; color: var(--charcoal-soft); background: var(--cream-alt); padding:4px 8px; border-radius:6px; white-space:nowrap; }
+
+.reset-row{ margin-top:26px; text-align:center; }
+.reset-row button{ font-size:12.5px; color: var(--charcoal-soft); background:none; border:none; text-decoration:underline; cursor:pointer; }
+
+/* Completion state */
+.complete-panel{ text-align:center; padding: 20px 10px 6px; }
+.complete-panel .big-num{ font-family: var(--font-display); font-size:52px; font-weight:700; color: var(--forest); line-height:1; }
+.complete-panel p{ color: var(--charcoal-soft); font-size:14px; margin: 8px 0 22px; }
+
+/* ============================================================
+   RESPONSIVE — mobile bottom nav
+   ============================================================ */
+@media (max-width: 700px){
+  .nav-wrap{ display:none; } /* replaced by fixed bottom bar */
+  body{ padding-bottom: 74px; }
+  .bottom-nav{
+    display:flex;
+    position:fixed; bottom:0; left:0; right:0; z-index:50;
+    background:#fff; border-top:1px solid var(--line);
+    box-shadow: 0 -6px 20px rgba(0,0,0,0.08);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  .topbar{ padding-bottom: 20px; }
+  .dial-wrap{ flex-direction:column; text-align:center; }
+}
+@media (min-width: 701px){
+  .bottom-nav{ display:none; }
+}
+.bottom-nav .tab-btn{ border-bottom:none; border-top: 3px solid transparent; padding: 10px 6px 8px; }
+.bottom-nav .tab-btn[aria-selected="true"]{ border-top-color: var(--forest); border-bottom-color:transparent; background: var(--cream); }
+
+footer.app-footer{
+  text-align:center; font-size:12px; color: var(--charcoal-soft); padding: 10px 20px 30px;
+}
+
+/* ===== HYBRID MENU ENHANCEMENTS ===== */
+.menu-tools{display:flex;gap:10px;align-items:center;margin:0 0 18px;position:sticky;top:8px;z-index:5}
+.menu-search{flex:1;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:0 15px;box-shadow:var(--shadow-sm)}
+.menu-search span{font-size:22px;color:var(--forest);line-height:1}
+.menu-search input{width:100%;border:0;outline:0;background:transparent;padding:12px 2px;font:500 14px var(--font-body);color:var(--charcoal)}
+.clear-search{border:1px solid var(--line);background:#fff;color:var(--charcoal-soft);border-radius:999px;padding:10px 14px;cursor:pointer;font-weight:700}
+.clear-search:hover{border-color:var(--rust);color:var(--rust)}
+.item-card{padding:0;overflow:hidden;border-left:0;border-top:4px solid var(--rust)}
+.item-copy{min-width:0;padding:15px 15px 0}
+.item-card-body{padding:0 15px 15px}
+.item-card h3{margin-top:0}
+.item-card .desc{margin-bottom:8px}
+.group-pill{display:inline-block;margin:0 0 8px;padding:4px 8px;border-radius:999px;background:var(--cream);color:var(--forest);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.ingredient-toggle{margin-top:10px;width:100%;text-align:left;cursor:pointer;border:1px dashed var(--rust);background:#fffaf6;color:var(--forest);border-radius:9px;padding:9px 11px;font-size:12px;font-weight:800}
+.ingredient-toggle:hover{background:var(--cream)}
+.ingredient-panel{display:none;margin-top:10px;padding:11px;border-radius:9px;background:var(--cream);border:1px solid var(--line)}
+.ingredient-panel.open{display:block;animation:fadeIn .18s ease}
+.ingredient-title{font-size:10px;text-transform:uppercase;letter-spacing:.6px;font-weight:800;color:var(--forest);margin-bottom:7px}
+.ingredient-list{display:flex;flex-wrap:wrap;gap:6px}
+.ingredient-chip{padding:5px 8px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:11px;color:var(--charcoal-soft)}
+.empty-menu{grid-column:1/-1;text-align:center;background:#fff;border:1px dashed var(--line);border-radius:var(--radius);padding:38px 20px;color:var(--charcoal-soft)}
+.empty-menu strong{display:block;font-family:var(--font-display);font-size:22px;color:var(--forest-dark);margin-bottom:5px}
+@media (max-width:700px){.menu-tools{top:0}.menu-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">P</div>
+      <div class="brand-text">
+        <h1>Panarottis Training Portal</h1>
+        <p>Menu Mastery &amp; Service Standards</p>
+      </div>
+    </div>
+    <div class="trainee-chip">
+      <span class="dot" aria-hidden="true"></span>
+      <span id="masteryChipText">0% mastery</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= DESKTOP / TABLET NAV ================= -->
+<div class="nav-wrap">
+  <nav class="tabs" id="tabsDesktop" role="tablist" aria-label="Training modules"></nav>
+</div>
+
+<main id="mainContent">
+
+  <!-- ================= MENU MODULE ================= -->
+  <section class="view" id="view-menu" role="tabpanel" aria-labelledby="tab-menu">
+    <div class="view-head">
+      <h2>Menu Breakdown</h2>
+      <p>Your digital cheat sheet. Browse by category to review descriptions, key ingredients and standard modifiers before your next quiz.</p>
+    </div>
+
+    <div class="note-banner" id="menuPlaceholderNote">
+      Ciders, Beers &amp; Spirits, Wines, and the Vegan Pizzas / Pastas / Subs / Starters are pulled directly from your uploaded menu photos. Items still marked "Sample entry" are placeholders until those specific pages (Hot &amp; Cold Beverages, Combos &amp; Promos, Kids Menu, classic Starters &amp; Desserts) are supplied.
+    </div>
+
+    <div class="menu-tools">
+      <label class="menu-search" aria-label="Search menu">
+        <span>⌕</span>
+        <input id="menuSearch" type="search" placeholder="Search dishes, ingredients, categories..." autocomplete="off">
+      </label>
+      <button class="clear-search" id="clearMenuSearch" type="button">Clear</button>
+    </div>
+    <div class="menu-cat-nav" id="menuCatNav"></div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </section>
+
+const questionsHtml = item.questionsToAsk && item.questionsToAsk.length > 0 
+    ? `
+        <div class="questions-to-ask">
+            <strong>Questions to Ask:</strong>
+            <ul>
+                ${item.questionsToAsk.map(q => `<li>${q}</li>`).join('')}
+            </ul>
+        </div>
+      ` 
+    : '';
+  <!-- ================= FLASHCARDS + QUIZ MODULE ================= -->
+  <section class="view" id="view-quiz" role="tabpanel" aria-labelledby="tab-quiz">
+    <div class="view-head">
+      <h2>Flashcards &amp; Quiz</h2>
+      <p>Flip flashcards to drill ingredients and portions, then switch to quiz mode for graded multiple-choice questions.</p>
+    </div>
+
+    <div class="menu-cat-nav" role="tablist" aria-label="Study mode">
+      <button class="chip-btn active" id="modeFlashBtn" data-mode="flash">Flashcards</button>
+      <button class="chip-btn" id="modeQuizBtn" data-mode="quiz">Multiple Choice</button>
+    </div>
+
+    <!-- Flashcard mode -->
+    <div id="flashPane">
+      <div class="flash-stage">
+        <div class="flash-card" id="flashCard" tabindex="0" role="button" aria-label="Flashcard, press to flip">
+          <div class="flash-inner">
+            <div class="flash-face front">
+              <div class="kicker" id="flashFrontKicker">Ingredient check</div>
+              <h3 id="flashFrontText">Loading…</h3>
+            </div>
+            <div class="flash-face back">
+              <div class="kicker">Answer</div>
+              <h3 id="flashBackText">Loading…</h3>
+              <p id="flashBackDetail"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="flash-hint">Tap the card to flip it, then say whether you knew it.</p>
+      <div class="flash-controls">
+        <button class="btn btn-ghost" id="flashKnewNot">Didn't know it</button>
+        <button class="btn btn-primary" id="flashKnew">I knew it</button>
+      </div>
+      <div class="flash-controls">
+        <button class="btn btn-ghost" id="flashPrev">← Previous</button>
+        <button class="btn btn-ghost" id="flashNext">Next →</button>
+      </div>
+    </div>
+
+    <!-- Quiz mode -->
+    <div id="quizPane" style="display:none;">
+      <div class="session-card">
+        <div class="session-head">
+          <span id="quizProgressLabel">Question 1 of 10</span>
+          <span class="streak" id="quizStreakLabel">🔥 Streak: 0</span>
+        </div>
+        <div class="session-body">
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="quizProgressFill" style="width:0%"></div></div>
+          <div id="quizActiveArea">
+            <p class="q-eyebrow" id="quizCategoryLabel">Pastas</p>
+            <p class="q-text" id="quizQuestionText">Loading question…</p>
+            <div class="opt-list" id="quizOptions"></div>
+            <div class="feedback-box" id="quizFeedback"></div>
+            <div class="session-foot">
+              <span style="font-size:13px;color:var(--charcoal-soft);">Score: <strong id="quizScoreLabel">0</strong>/<span id="quizTotalLabel">0</span></span>
+              <button class="btn btn-primary" id="quizNextBtn" disabled>Next Question</button>
+            </div>
+          </div>
+          <div id="quizCompleteArea" style="display:none;" class="complete-panel">
+            <div class="big-num" id="quizFinalScore">0%</div>
+            <p>Quiz complete — nice work. Your best result is saved to your progress dashboard.</p>
+            <button class="btn btn-primary" id="quizRestartBtn">Retake Quiz</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRUE / FALSE MODULE ================= -->
+  <section class="view" id="view-tf" role="tabpanel" aria-labelledby="tab-tf">
+    <div class="view-head">
+      <h2>True or False Drills</h2>
+      <p>Quick-fire rounds on operational rules — allergens, standard builds and service policy. Answer fast and trust your training.</p>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head">
+        <span id="tfProgressLabel">Question 1 of 10</span>
+        <span class="streak" id="tfStreakLabel">🔥 Streak: 0</span>
+      </div>
+      <div class="session-body">
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="tfProgressFill" style="width:0%"></div></div>
+        <div id="tfActiveArea">
+          <p class="q-eyebrow" id="tfCategoryLabel">Allergens &amp; Ops</p>
+          <p class="q-text" id="tfQuestionText">Loading statement…</p>
+          <div class="opt-list tf-row">
+            <button class="opt-btn" id="tfTrueBtn"><span class="letter">T</span> True</button>
+            <button class="opt-btn" id="tfFalseBtn"><span class="letter">F</span> False</button>
+          </div>
+          <div class="feedback-box" id="tfFeedback"></div>
+          <div class="session-foot">
+            <span style="font-size:13px;color:var(--charcoal-soft);">Score: <strong id="tfScoreLabel">0</strong>/<span id="tfTotalLabel">0</span></span>
+            <button class="btn btn-primary" id="tfNextBtn" disabled>Next Statement</button>
+          </div>
+        </div>
+        <div id="tfCompleteArea" style="display:none;" class="complete-panel">
+          <div class="big-num" id="tfFinalScore">0%</div>
+          <p>Drill complete. Keep an eye on the statements you missed — they'll come up again next round.</p>
+          <button class="btn btn-primary" id="tfRestartBtn">Run Again</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SCENARIO MODULE ================= -->
+  <section class="view" id="view-scenario" role="tabpanel" aria-labelledby="tab-scenario">
+    <div class="view-head">
+      <h2>Customer Handling &amp; Service Scenarios</h2>
+      <p>Real-world floor situations — complaints, upselling and table service standards. Choose the most professional response.</p>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head">
+        <span id="scnProgressLabel">Scenario 1 of 8</span>
+        <span class="streak" id="scnStreakLabel">🔥 Streak: 0</span>
+      </div>
+      <div class="session-body">
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="scnProgressFill" style="width:0%"></div></div>
+        <div id="scnActiveArea">
+          <p class="q-eyebrow" id="scnCategoryLabel">Complaint Handling</p>
+          <p class="q-text" id="scnQuestionText">Loading scenario…</p>
+          <div class="opt-list" id="scnOptions"></div>
+          <div class="feedback-box" id="scnFeedback"></div>
+          <div class="session-foot">
+            <span style="font-size:13px;color:var(--charcoal-soft);">Score: <strong id="scnScoreLabel">0</strong>/<span id="scnTotalLabel">0</span></span>
+            <button class="btn btn-primary" id="scnNextBtn" disabled>Next Scenario</button>
+          </div>
+        </div>
+        <div id="scnCompleteArea" style="display:none;" class="complete-panel">
+          <div class="big-num" id="scnFinalScore">0%</div>
+          <p>Scenario round complete. Strong floor judgement protects the guest experience and the team's tips.</p>
+          <button class="btn btn-primary" id="scnRestartBtn">Run Again</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROGRESS DASHBOARD ================= -->
+  <section class="view" id="view-progress" role="tabpanel" aria-labelledby="tab-progress">
+    <div class="view-head">
+      <h2>Progress Tracker</h2>
+      <p>Your overall mastery across every module, saved automatically to this device.</p>
+    </div>
+
+    <div class="dial-wrap">
+      <svg class="mastery-dial" viewBox="0 0 120 120" role="img" aria-label="Overall mastery percentage">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="#ECE2C8" stroke-width="12"></circle>
+        <circle id="dialProgressCircle" cx="60" cy="60" r="52" fill="none" stroke="#1F3D2E" stroke-width="12"
+          stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7"
+          transform="rotate(-90 60 60)"></circle>
+        <text id="dialText" x="60" y="66" text-anchor="middle" font-family="Fraunces, serif" font-size="24" font-weight="700" fill="#241F1C">0%</text>
+      </svg>
+      <div class="dial-copy">
+        <h3>Overall Mastery</h3>
+        <p id="dialSummaryText">Complete quizzes, drills and scenarios to build your mastery score. Everything here is saved to this device automatically.</p>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card"><div class="num" id="statAnswered">0</div><div class="label">Questions Answered</div></div>
+      <div class="stat-card"><div class="num" id="statCorrect">0</div><div class="label">Correct Answers</div></div>
+      <div class="stat-card"><div class="num" id="statBestStreak">0</div><div class="label">Best Streak</div></div>
+      <div class="stat-card"><div class="num" id="statModulesDone">0/4</div><div class="label">Modules Completed</div></div>
+    </div>
+
+    <div class="module-list" id="moduleList"></div>
+
+    <div class="reset-row">
+      <button id="resetProgressBtn" type="button">Reset all saved progress on this device</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= MOBILE BOTTOM NAV ================= -->
+<nav class="bottom-nav" id="tabsMobile" role="tablist" aria-label="Training modules"></nav>
+
+<footer class="app-footer">Panarottis Staff Training Portal · Menu, quizzes & progress · Saved locally on this device.</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
