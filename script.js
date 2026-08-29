@@ -169,68 +169,419 @@ const MENU_DATA = {
         }
     },
     pizza: {
-        title: "🍕 Pizzas",
-        subcategories: {
-            "Classic Pizzas": [
-                { name: "Margherita", price: "R94.90", desc: "A traditional tomato base topped with mozzarella and Italian spices.", ingredients: ["Tomato base", "Mozzarella cheese", "Italian spices", "Oregano", "Basil"], tags: ["veg", "classic"], modifiers: ["Vegan option available"] },
-                { name: "Three Cheese Flatbread", price: "R113.90", desc: "Garlic or herb flatbread topped with mozzarella, cheddar and Danish feta.", ingredients: ["Garlic or herb flatbread base", "Mozzarella", "Cheddar cheese", "Danish feta"], tags: ["veg", "classic"] },
-                { name: "Saucy Chicken & Mushroom", price: "R155.90", desc: "Roast chicken strips and mushrooms, drizzled in a sweet chilli mayo.", ingredients: ["Tomato base", "Mozzarella", "Roast chicken strips", "Brown mushrooms", "Sweet chilli mayo drizzle"], tags: ["hot", "classic"], modifiers: ["Add extra chilli for a hotter bite"] },
-                { name: "Chicken & Mayo", price: "R142.90", desc: "Roast chicken strips and tangy mayonnaise.", ingredients: ["Tomato base", "Mozzarella", "Roast chicken strips", "Tangy mayonnaise"], tags: ["classic"] },
-                { name: "Pepperoni", price: "R139.90", desc: "Our famous Margherita covered in thinly sliced pepperoni.", ingredients: ["Tomato base", "Mozzarella", "Italian spices", "Thinly sliced pepperoni"], tags: ["hot", "classic"], modifiers: ["Add extra chilli for a hotter bite"] },
-                { name: "Bacon & Ham", price: "R143.90", desc: "Bacon and ham.", ingredients: ["Tomato base", "Mozzarella", "Bacon strips", "Ham slices"], tags: ["classic"] },
-                { name: "Alfredo", price: "R148.90", desc: "Creamy white sauce-based Margherita, garlic, Parmesan cheese, mushrooms, ham and bacon.", ingredients: ["Creamy white sauce base", "Mozzarella", "Garlic", "Parmesan cheese", "Brown mushrooms", "Ham", "Bacon"], tags: ["classic"] },
-                { name: "Sweet & Spicy Chicken", price: "R145.90", desc: "Roast chicken strips with red onions, drizzled in our secret sweet and spicy tikka sauce.", ingredients: ["Tomato base", "Mozzarella", "Roast chicken strips", "Red onions", "Sweet & spicy tikka sauce"], tags: ["hot", "classic"] },
-                { name: "Sweet Chilli Chicken & Feta", price: "R149.90", desc: "Roast chicken strips, Danish feta and sweet chilli sauce.", ingredients: ["Tomato base", "Mozzarella", "Roast chicken strips", "Danish feta", "Sweet chilli sauce"], tags: ["classic"] },
-                { name: "BBQ Chicken / Rib & Pineapple", price: "R142.90", desc: "Your choice of roast chicken strips or deboned pork ribs, pineapple and sticky BBQ sauce.", ingredients: ["Tomato base", "Mozzarella", "Roast chicken strips OR deboned pork ribs", "Pineapple chunks", "Sticky BBQ sauce"], tags: ["classic"] },
-                { name: "Regina", price: "R127.90", desc: "Ham and mushrooms.", ingredients: ["Tomato base", "Mozzarella", "Ham", "Brown mushrooms"], tags: ["classic"] },
-                { name: "Vegetarian", price: "R143.90", desc: "Cherry tomatoes, red onions, assorted peppers, mushrooms and pineapple.", ingredients: ["Tomato base", "Mozzarella", "Cherry tomatoes", "Red onions", "Assorted peppers", "Brown mushrooms", "Pineapple"], tags: ["veg", "classic"] },
-                { name: "Hawaiian", price: "R127.90", desc: "Ham and pineapple.", ingredients: ["Tomato base", "Mozzarella", "Ham", "Pineapple chunks"], tags: ["classic"] }
-            ],
-            "Gourmet Pizzas": [
-                { name: "Saucy Chicken & Bacon Supreme", price: "R178.90", desc: "Roast chicken strips, bacon and ham, drizzled in our sweet chilli mayo.", ingredients: ["Tomato base", "Mozzarella", "Roast chicken strips", "Bacon", "Ham", "Sweet chilli mayo drizzle"], tags: ["gourmet"] },
-                { name: "Californian", price: "R177.90", desc: "Double bacon, Danish feta and avocado.", ingredients: ["Tomato base", "Mozzarella", "Double bacon", "Danish feta", "Fresh avocado"], tags: ["gourmet"] },
-                { name: "Carnivore", price: "R178.90", desc: "Salami, chorizo sausage, ham and bacon.", ingredients: ["Tomato base", "Mozzarella", "Salami", "Chorizo sausage", "Ham", "Bacon"], tags: ["gourmet"] },
-                { name: "Rib & Steak/Chicken", price: "R177.90", desc: "Deboned pork ribs and steak or roast chicken strips, marinated in sticky BBQ sauce.", ingredients: ["Tomato base", "Mozzarella", "Deboned pork ribs", "Steak OR roast chicken strips", "Sticky BBQ sauce marinade"], tags: ["gourmet"] },
-                { name: "Saucy Meat Supreme", price: "R172.90", desc: "Bacon, ham, chorizo sausage and bolognese mince, drizzled in sticky BBQ sauce.", ingredients: ["Tomato base", "Mozzarella", "Bacon", "Ham", "Chorizo sausage", "Bolognese mince", "Sticky BBQ sauce"], tags: ["gourmet"] },
-                { name: "Panarottis Special", price: "R195.90", desc: "Our champion pizza! Salami, ham, mushrooms, pineapple and olives.", ingredients: ["Tomato base", "Mozzarella", "Salami", "Ham", "Brown mushrooms", "Pineapple", "Olives"], tags: ["gourmet"] },
-                { name: "Seafood", price: "R195.90", desc: "Prawn tails, calamari strips, crab sticks and mussels drizzled in a sweet chilli mayo.", ingredients: ["Tomato base", "Mozzarella", "Prawn tails", "Calamari strips", "Crab sticks", "Mussels", "Sweet chilli mayo drizzle"], tags: ["gourmet"], modifiers: ["Add anchovies R19.90"] },
-                { name: "Mexicana", price: "R175.90", desc: "Bolognese mince, cherry tomatoes, assorted peppers, red onions and garlic.", ingredients: ["Tomato base", "Mozzarella", "Bolognese mince", "Cherry tomatoes", "Assorted peppers", "Red onions", "Garlic"], tags: ["hot", "gourmet"], modifiers: ["Add extra chilli for a hotter bite"] },
-                { name: "Al Capone", price: "R169.90", desc: "Tikka chicken, red onions, cherry tomatoes and gherkins.", ingredients: ["Tomato base", "Mozzarella", "Tikka chicken", "Red onions", "Cherry tomatoes", "Gherkins"], tags: ["hot", "gourmet"] },
-                { name: "Mediterranean", price: "R159.90", desc: "Olives, Danish feta, sun-dried tomatoes, basil pesto and fresh rocket.", ingredients: ["Tomato base", "Mozzarella", "Olives", "Danish feta", "Sun-dried tomatoes", "Basil pesto", "Fresh rocket"], tags: ["veg", "gourmet"], modifiers: ["Add salami R33.90"] },
-                { name: "Nachos Pizza", price: "R194.90", desc: "Bolognese mince or roast chicken strips in our secret sweet and spicy tikka sauce or tomato concassé, garlic, spicy salsa, cream cheese, avocado and nacho chips - spicy with a bite.", ingredients: ["Tomato base OR tikka sauce", "Mozzarella", "Bolognese mince OR roast chicken strips", "Tomato concassé", "Garlic", "Spicy salsa", "Cream cheese", "Avocado", "Nacho chips"], tags: ["hot", "gourmet"], modifiers: ["Add extra chilli for a hotter bite"] }
-            ],
-            "Special Pizzas": [
-                { name: "Duo Pizzas", price: "R188.90", desc: "Combine your 2 favourite 30cm pizzas into 1 delicious duo! Excludes mini/Meaty Pizzas.", ingredients: ["Two 30cm pizza halves combined", "Choice of any 2 classic/gourmet pizzas", "Excludes mini/Meaty Pizzas"], tags: ["special", "dp"] },
-                { name: "Calzone", price: "R172.90", desc: "Folded pizza pocket filled with mozzarella, salami, chorizo, mushrooms and pineapple, oven-baked until golden brown.", ingredients: ["Folded pizza dough", "Mozzarella", "Salami", "Chorizo", "Mushrooms", "Pineapple", "Golden brown baked crust"], tags: ["new", "special"] },
-                { name: "Double Up", price: "R30.90", desc: "Add extra cheese or avocado to any pizza.", ingredients: ["Extra mozzarella cheese", "OR fresh avocado slices"], tags: ["modifier"] }
-            ]
-        }
-    },
+    title: "🍕 Pizzas",
+    subcategories: {
+        "Classic Pizzas": [
+            { 
+                name: "Margherita", 
+                price: "R94.90", 
+                desc: "A traditional tomato base topped with mozzarella and Italian spices.", 
+                ingredients: ["Tomato base", "Mozzarella cheese", "Italian spices", "Oregano", "Basil"], 
+                questionsToAsk: [],
+                tags: ["veg", "classic"], 
+                modifiers: ["Vegan option available"] 
+            },
+            { 
+                name: "Three Cheese Flatbread", 
+                price: "R113.90", 
+                desc: "Garlic or herb flatbread topped with mozzarella, cheddar and Danish feta.", 
+                ingredients: ["Garlic or herb flatbread base", "Mozzarella", "Cheddar cheese", "Danish feta"], 
+                questionsToAsk: [
+                    "Would you prefer garlic or herb?"
+                ],
+                tags: ["veg", "classic"] 
+            },
+            { 
+                name: "Saucy Chicken & Mushroom", 
+                price: "R155.90", 
+                desc: "Roast chicken strips and mushrooms, drizzled in a sweet chilli mayo.", 
+                ingredients: ["Tomato base", "Mozzarella", "Roast chicken strips", "Brown mushrooms", "Sweet chilli mayo drizzle"], 
+                questionsToAsk: [],
+                tags: ["hot", "classic"], 
+                modifiers: ["Add extra chilli for a hotter bite"] 
+            },
+            { 
+                name: "Chicken & Mayo", 
+                price: "R142.90", 
+                desc: "Roast chicken strips and tangy mayonnaise.", 
+                ingredients: ["Tomato base", "Mozzarella", "Roast chicken strips", "Tangy mayonnaise"], 
+                questionsToAsk: [],
+                tags: ["classic"] 
+            },
+            { 
+                name: "Pepperoni", 
+                price: "R139.90", 
+                desc: "Our famous Margherita covered in thinly sliced pepperoni.", 
+                ingredients: ["Tomato base", "Mozzarella", "Italian spices", "Thinly sliced pepperoni"], 
+                questionsToAsk: [
+                    "Would you like to add extra chilli?"
+                ],
+                tags: ["hot", "classic"], 
+                modifiers: ["ADD CHILLI FOR A HOTTER BITE."] 
+            },
+            { 
+                name: "Bacon & Ham", 
+                price: "R143.90", 
+                desc: "Bacon & ham..", 
+                ingredients: ["Tomato base", "Mozzarella", "Bacon strips", "Ham slices"], 
+                questionsToAsk: [],
+                tags: ["classic"] 
+            },
+            { 
+                name: "Alfredo", 
+                price: "R148.90", 
+                desc: "Creamy white sauce-based Margherita, garlic, Parmesan cheese, mushrooms, ham and bacon.", 
+                ingredients: ["Creamy white sauce base", "Mozzarella", "Garlic", "Parmesan cheese", "Brown mushrooms", "Ham", "Bacon"], 
+                questionsToAsk: [],
+                tags: ["classic"] 
+            },
+            { 
+                name: "Sweet & Spicy Chicken", 
+                price: "R145.90", 
+                desc: "Roast chicken strips with red onions, drizzled in our secret sweet and spicy tikka sauce.", 
+                ingredients: ["Tomato base", "Mozzarella", "Roast chicken strips", "Red onions", "Sweet & spicy tikka sauce"], 
+                questionsToAsk: [],
+                tags: ["hot", "classic"] 
+            },
+            { 
+                name: "Sweet Chilli Chicken & Feta", 
+                price: "R149.90", 
+                desc: "Roast chicken strips, Danish feta and sweet chilli sauce.", 
+                ingredients: ["Tomato base", "Mozzarella", "Roast chicken strips", "Danish feta", "Sweet chilli sauce"], 
+                questionsToAsk: [],
+                tags: ["classic"] 
+            },
+            { 
+                name: "BBQ Chicken / Rib & Pineapple", 
+                price: "R142.90", 
+                desc: "Your choice of roast chicken strips or deboned pork ribs, pineapple and sticky BBQ sauce.", 
+                ingredients: ["Tomato base", "Mozzarella", "Roast chicken strips OR deboned pork ribs", "Pineapple chunks", "Sticky BBQ sauce"], 
+                questionsToAsk: [
+                    "Would you prefer chicken or rib?"
+                ],
+                tags: ["classic"] 
+            },
+            { 
+                name: "Regina", 
+                price: "R127.90", 
+                desc: "Ham and mushrooms.", 
+                ingredients: ["Tomato base", "Mozzarella", "Ham", "Brown mushrooms"], 
+                questionsToAsk: [],
+                tags: ["classic"] 
+            },
+            { 
+                name: "Vegetarian", 
+                price: "R143.90", 
+                desc: "Cherry tomatoes, red onions, assorted peppers, mushrooms and pineapple.", 
+                ingredients: ["Tomato base", "Mozzarella", "Cherry tomatoes", "Red onions", "Assorted peppers", "Brown mushrooms", "Pineapple"], 
+                questionsToAsk: [],
+                tags: ["veg", "classic"] 
+            },
+            { 
+                name: "Hawaiian", 
+                price: "R127.90", 
+                desc: "Ham & pineapple.", 
+                ingredients: ["Tomato base", "Mozzarella", "Ham", "Pineapple chunks"], 
+                questionsToAsk: [],
+                tags: ["classic"] 
+            }
+        ],
+        "Gourmet Pizzas": [
+            { 
+                name: "Saucy Chicken & Bacon Supreme", 
+                price: "R178.90", 
+                desc: "Roast chickne strips, bacon and ham, drizzled in our sweet chilli mayo.", 
+                ingredients: ["Tomato base", "Mozzarella", "Roast chicken strips", "Bacon", "Ham", "Sweet chilli mayo drizzle"], 
+                questionsToAsk: [],
+                tags: ["gourmet"] 
+            },
+            { 
+                name: "Californian", 
+                price: "R177.90", 
+                desc: "Double bacon, Danish feta and avocado.", 
+                ingredients: ["Tomato base", "Mozzarella", "Double bacon", "Danish feta", "Fresh avocado"], 
+                questionsToAsk: [],
+                tags: ["gourmet"] 
+            },
+            { 
+                name: "Carnivore", 
+                price: "R178.90", 
+                desc: "Salami, chorizo sausage, ham and bacon.", 
+                ingredients: ["Tomato base", "Mozzarella", "Salami", "Chorizo sausage", "Ham", "Bacon"], 
+                questionsToAsk: [],
+                tags: ["gourmet"] 
+            },
+            { 
+                name: "Rib & Steak/Chicken", 
+                price: "R177.90", 
+                desc: "Deboned pork ribs and steak or roast chicken strips, marinated in BBQ sauce.", 
+                ingredients: ["Tomato base", "Mozzarella", "Deboned pork ribs", "Steak OR roast chicken strips", "BBQ sauce marinade"], 
+                questionsToAsk: [
+                    "Would you prefer Steak or Chicken?"
+                ],
+                tags: ["gourmet"] 
+            },
+            { 
+                name: "Saucy Meat Supreme", 
+                price: "R172.90", 
+                desc: "Bacon, ham, chorizo sausage and bolognese mince, drizzled in our sticky BBQ sauce.", 
+                ingredients: ["Tomato base", "Mozzarella", "Bacon", "Ham", "Chorizo sausage", "Bolognese mince", "Sticky BBQ sauce"], 
+                questionsToAsk: [],
+                tags: ["gourmet"] 
+            },
+            { 
+                name: "Seafood", 
+                price: "R195.90", 
+                desc: "Prawn tails, calamari strips, crab sticks and mussels drizzled in a sweet chilli mayo.", 
+                ingredients: ["Tomato base", "Mozzarella", "Prawn tails", "Calamari strips", "Crab sticks", "Mussels", "Sweet chilli mayo drizzle"], 
+                questionsToAsk: [
+                    "Would you like to add Anchovies?"
+                ],
+                tags: ["gourmet"], 
+                modifiers: ["CAN ADD ANCHOVIES"] 
+            },
+            { 
+                name: "Mexicana", 
+                price: "R175.90", 
+                desc: "Bolognese mince, cherry tomatoes, assorted peppers, red onions and garlic.", 
+                ingredients: ["Tomato base", "Mozzarella", "Bolognese mince", "Cherry tomatoes", "Assorted peppers", "Red onions", "Garlic"], 
+                questionsToAsk: [],
+                tags: ["hot", "gourmet"] 
+            },
+            { 
+                name: "Al Capone", 
+                price: "R169.90", 
+                desc: "Tikka chicken, red onions, cherry tomatoes and gherkins.", 
+                ingredients: ["Tomato base", "Mozzarella", "Tikka chicken", "Red onions", "Cherry tomatoes", "Gherkins"], 
+                questionsToAsk: [],
+                tags: ["hot", "gourmet"] 
+            },
+            { 
+                name: "Mediterranean", 
+                price: "R159.90", 
+                desc: "Olives, Danish feta, sin-dried tomatoes, basil pesto and fresh rocket.", 
+                ingredients: ["Tomato base", "Mozzarella", "Olives", "Danish feta", "Sun-dried tomatoes", "Basil pesto", "Fresh rocket"], 
+                questionsToAsk: [
+                    "Would you like to add extra salami?"
+                ],
+                tags: ["veg", "gourmet"], 
+                modifiers: ["CAN ADD SALAMI"] 
+            },
+            { 
+                name: "Calzone", 
+                price: "R172.90", 
+                desc: "Folded pizza pocket filled with mozzarella, salami, chorizo, mushrooms and pineapple, oven-baked until golden brown.", 
+                ingredients: ["Folded pizza dough", "Mozzarella", "Salami", "Chorizo", "Mushrooms", "Pineapple"], 
+                questionsToAsk: [],
+                tags: ["gourmet"] 
+            },
+            { 
+                name: "Nachos Pizza", 
+                price: "R194.90", 
+                desc: "Bolognese mince or roast chicken strips in our secret sweet and spicy tikka sauce or tomato concassé, garlic, spicy salsa, cream cheese, avo cado and nacho chips - spicy with a bite.", 
+                ingredients: ["Tomato concassé OR tikka sauce", "Mozzarella", "Bolognese mince OR roast chicken strips", "Garlic", "Spicy salsa", "Cream cheese", "Avocado", "Nacho chips"], 
+                questionsToAsk: [
+                    "Would you prefer mince or chicken?",
+                    "Would you like it in sweet tikka sauce or Concasse?",
+                    "Would you like to add extra chilli?"
+                ],
+                tags: ["hot", "gourmet"], 
+                modifiers: ["ADD CHILLI FOR A HOTTER BITE."] 
+            },
+            { 
+                name: "Panarottis Special", 
+                price: "R195.90", 
+                desc: "Our champion pizza! Salami, ham, mushrooms, pineapple and olives.", 
+                ingredients: ["Tomato base", "Mozzarella", "Salami", "Ham", "Mushrooms", "Pineapple", "Olives"], 
+                questionsToAsk: [],
+                tags: ["gourmet"] 
+            }
+        ],
+        "MMMeaty Pizzas": [
+            { 
+                name: "Rib & Chicken Combo", 
+                price: "", 
+                desc: "Two favourites combined - riblets and chicken wings.", 
+                ingredients: ["Riblets", "Chicken wings"], 
+                questionsToAsk: [],
+                tags: ["meaty"] 
+            },
+            { 
+                name: "Chicken Wings", 
+                price: "", 
+                desc: "Roast chicken strips with sweet chilli mayo and assorted peppers, topped with 8 sticky BBQ chicken wings, drizzled with sweet chilli mayo.", 
+                ingredients: ["Roast chicken strips", "Sweet chilli mayo", "Assorted peppers", "8 sticky BBQ chicken wings"], 
+                questionsToAsk: [],
+                tags: ["meaty"] 
+            },
+            { 
+                name: "Rib Pizza", 
+                price: "", 
+                desc: "Bacon and ham, topped with sticky basted riblets and drizzled with Panarottis mayo.", 
+                ingredients: ["Bacon", "Ham", "Sticky basted riblets", "Panarottis mayo"], 
+                questionsToAsk: [],
+                tags: ["meaty"] 
+            }
+        ],
+        "Special Pizzas": [
+            { 
+                name: "Duo Pizzas", 
+                price: "R188.90", 
+                desc: "Combine your 2 favourite 30cm pizzas into 1 delicious duo! Excludes MMMeaty pizzas.", 
+                ingredients: ["Two 30cm pizza halves combined", "Choice of any 2 classic/gourmet pizzas"], 
+                questionsToAsk: [
+                    "Which two pizzas would you like?"
+                ],
+                tags: ["special", "dp"] 
+            }
+        ]
+    }
+},
     pasta: {
-        title: "🍝 Pastas",
-        note: "Choice of spaghetti, penne or fettuccine",
-        subcategories: {
-            "Classic Pastas": [
-                { name: "Alfredo", price: "R139.90", desc: "Crispy bacon, ham and brown mushrooms in a rich, cream-based sauce.", ingredients: ["Choice of pasta (spaghetti/penne/fettuccine)", "Crispy bacon", "Ham", "Brown mushrooms", "Rich cream-based sauce", "Parmesan"], tags: ["classic"] },
-                { name: "Bolognese", price: "R129.90", desc: "Slow-cooked beef bolognese mince in a tomato-based sauce, sprinkled with Parmesan.", ingredients: ["Choice of pasta", "Slow-cooked beef bolognese mince", "Tomato-based sauce", "Parmesan cheese sprinkle"], tags: ["hot", "classic"] },
-                { name: "Bacon Carbonara", price: "R124.90", desc: "Crispy bacon tossed in creamy hollandaise sauce, served with spaghetti and sprinkled with Parmesan.", ingredients: ["Spaghetti", "Crispy bacon", "Creamy hollandaise sauce", "Parmesan cheese"], tags: ["new", "classic"] },
-                { name: "Capricciosa", price: "R134.90", desc: "Oven-roasted chicken, assorted peppers and brown mushrooms in a cream-based sauce.", ingredients: ["Choice of pasta", "Oven-roasted chicken", "Assorted peppers", "Brown mushrooms", "Cream-based sauce"], tags: ["hot", "classic"] },
-                { name: "Chicken Mediterranean", price: "R142.90", desc: "Pasta tossed in olive oil and garlic, combined with roast chicken, brown mushrooms and basil pesto. Topped with sun-dried tomatoes, Danish feta and rocket.", ingredients: ["Choice of pasta", "Olive oil", "Garlic", "Roast chicken", "Brown mushrooms", "Basil pesto", "Sun-dried tomatoes", "Danish feta", "Fresh rocket"], tags: ["hot", "classic"], modifiers: ["Add creamy Parmesan white sauce R19.90"] }
-            ],
-            "Speciality Pastas": [
-                { name: "Saltimbocca", price: "R214.90", desc: "Fillet medallions served on a bed of pasta layered with mozzarella and finished with crispy bacon, ham and brown mushrooms in a rich, cream-based sauce.", ingredients: ["Choice of pasta base", "Fillet medallions", "Mozzarella layer", "Crispy bacon", "Ham", "Brown mushrooms", "Rich cream-based sauce"], tags: ["dp", "speciality"] },
-                { name: "Chicken Milano", price: "R177.90", desc: "Chicken breast medallions served on a bed of pasta layered with cheddar and finished with sautéed brown mushrooms, red onions, and assorted peppers in a rich, cream-based sauce.", ingredients: ["Choice of pasta base", "Chicken breast medallions", "Cheddar cheese layer", "Sautéed brown mushrooms", "Red onions", "Assorted peppers", "Rich cream-based sauce"], tags: ["speciality"] }
-            ],
-            "Gourmet Pastas": [
-                { name: "Home-Made Beef Lasagne", price: "R149.90", desc: "A home-made traditional Italian dish of layered bolognese mince, pasta and tomato sauce, topped with mozzarella and cheddar, baked to perfection.", ingredients: ["Layered bolognese mince", "Pasta sheets", "Tomato sauce", "Mozzarella", "Cheddar cheese", "Oven-baked"], tags: ["gourmet"] },
-                { name: "Prawn & Chorizo", price: "R169.90", desc: "Prawn tails and chorizo sausage perfectly combined with sautéed red onions in a creamy tomato-based sauce.", ingredients: ["Choice of pasta", "Prawn tails", "Chorizo sausage", "Sautéed red onions", "Creamy tomato-based sauce"], tags: ["gourmet"] },
-                { name: "Chicken Parmesan Pomodoro", price: "R163.90", desc: "A tomato-based pasta with chorizo sausage, red onions, garlic and a hint of chilli, topped with a Cajun-crusted chicken breast, oven-baked and smothered in a creamy Parmesan white sauce.", ingredients: ["Choice of pasta", "Tomato-based sauce", "Chorizo sausage", "Red onions", "Garlic", "Hint of chilli", "Cajun-crusted chicken breast", "Creamy Parmesan white sauce", "Oven-baked"], tags: ["gourmet"] },
-                { name: "Seafood", price: "R169.90", desc: "Prawn tails, mussels and calamari strips perfectly combined with sautéed red onions in a creamy tomato-based sauce.", ingredients: ["Choice of pasta", "Prawn tails", "Mussels", "Calamari strips", "Sautéed red onions", "Creamy tomato-based sauce"], tags: ["gourmet"], modifiers: ["Add anchovies R19.90"] },
-                { name: "Cajun Chicken & Prawn", price: "R169.90", desc: "Cajun roast chicken strips, garlic prawns and assorted peppers in a rich cream-based sauce.", ingredients: ["Choice of pasta", "Cajun roast chicken strips", "Garlic prawns", "Assorted peppers", "Rich cream-based sauce"], tags: ["gourmet"] },
-                { name: "Carne", price: "R157.90", desc: "Crispy bacon, salami, chorizo sausage, red onions and assorted peppers, sautéed and combined in a creamy tomato-based sauce.", ingredients: ["Choice of pasta", "Crispy bacon", "Salami", "Chorizo sausage", "Red onions", "Assorted peppers", "Creamy tomato-based sauce"], tags: ["gourmet"] }
-            ]
-        }
-    },
+    title: "🍝 Pastas",
+    note: "Choice of spaghetti, penne or fettuccine",
+    subcategories: {
+        "Classic Pastas": [
+            { 
+                name: "Alfredo", 
+                price: "R139.90", 
+                desc: "Crispy bacon, ham and brown mushrooms in a rich, cream-based sauce.", 
+                ingredients: ["Choice of pasta (spaghetti/penne/fettuccine)", "Crispy bacon", "Ham", "Brown mushrooms", "Rich cream-based sauce", "Parmesan"], 
+                questionsToAsk: [
+                    "Would you prefer Penne, Fettucine or Spaghetti?"
+                ],
+                tags: ["classic"] 
+            },
+            { 
+                name: "Bolognese", 
+                price: "R129.90", 
+                desc: "Slow-cooked beef bolognese mince in a tomato-based sauce, sprinkled with Parmesan.", 
+                ingredients: ["Choice of pasta", "Slow-cooked beef bolognese mince", "Tomato-based sauce", "Parmesan cheese sprinkle"], 
+                questionsToAsk: [
+                    "Would you prefer Penne, Fettucine or Spaghetti?"
+                ],
+                tags: ["hot", "classic"] 
+            },
+            { 
+                name: "Capricciosa", 
+                price: "R134.90", 
+                desc: "Oven-roasted chicken, assorted peppers and brown mushrooms in a cream-based sauce.", 
+                ingredients: ["Choice of pasta", "Oven-roasted chicken", "Assorted peppers", "Brown mushrooms", "Cream-based sauce"], 
+                questionsToAsk: [
+                    "Would you prefer Penne, Fettucine or Spaghetti?"
+                ],
+                tags: ["hot", "classic"] 
+            },
+            { 
+                name: "Chicken Mediterranean", 
+                price: "R142.90", 
+                desc: "Pasta tossed in olive oil and garlic, combined with roast chicken, brown mushrooms and basil pesto. Topped with sun-dried tomatoes, Danish feta and rocket.", 
+                ingredients: ["Choice of pasta", "Olive oil", "Garlic", "Roast chicken", "Brown mushrooms", "Basil pesto", "Sun-dried tomatoes", "Danish feta", "Fresh rocket"], 
+                questionsToAsk: [
+                    "Would you prefer Penne, Fettucine or Spaghetti?",
+                    "Would you prefer to add Creamy Parmesan white sauce?"
+                ],
+                tags: ["hot", "classic"], 
+                modifiers: ["Add creamy Parmesan white sauce R19.90"] 
+            },
+            { 
+                name: "Bacon Carbonara", 
+                price: "R124.90", 
+                desc: "Crispy bacon tossed in creamy hollandaise sauce, served with spaghetti and sprinkled with Parmesan.", 
+                ingredients: ["Spaghetti", "Crispy bacon", "Creamy hollandaise sauce", "Parmesan cheese"], 
+                questionsToAsk: [
+                    "Would you prefer Penne, Fettucine or Spaghetti?",
+                    "Would you prefer to add chicken strips?"
+                ],
+                tags: ["new", "classic"] 
+            }
+        ],
+        "Gourmet Pastas": [
+            { 
+                name: "Home-Made Beef Lasagne", 
+                price: "R149.90", 
+                desc: "A home-made traditional Italian dish of layered bolognese mince, pasta and tomato sauce, topped with mozzarella and cheddar, baked to perfection.", 
+                ingredients: ["Layered bolognese mince", "Pasta sheets", "Tomato sauce", "Mozzarella", "Cheddar cheese", "Oven-baked"], 
+                questionsToAsk: [],
+                tags: ["gourmet"] 
+            },
+            { 
+                name: "Prawn & Chorizo", 
+                price: "R169.90", 
+                desc: "Prawn tails and chorizo sausage perfectly combined with sautéed red onions in a creamy tomato-based sauce.", 
+                ingredients: ["Choice of pasta", "Prawn tails", "Chorizo sausage", "Sautéed red onions", "Creamy tomato-based sauce"], 
+                questionsToAsk: [
+                    "Would you prefer Penne, Fettucine or Spaghetti?"
+                ],
+                tags: ["gourmet"] 
+            },
+            { 
+                name: "Chicken Parmesan Pomodoro", 
+                price: "R163.90", 
+                desc: "A tomato-based pasta with chorizo sausage, red onions, garlic and a hint of chilli, topped with a Cajun-crusted chicken breast, oven-baked and smothered in a creamy Parmesan white sauce.", 
+                ingredients: ["Choice of pasta", "Tomato-based sauce", "Chorizo sausage", "Red onions", "Garlic", "Hint of chilli", "Cajun-crusted chicken breast", "Creamy Parmesan white sauce", "Oven-baked"], 
+                questionsToAsk: [
+                    "Would you prefer Penne, Fettucine or Spaghetti?"
+                ],
+                tags: ["gourmet"] 
+            },
+            { 
+                name: "Seafood", 
+                price: "R169.90", 
+                desc: "Prawn tails, mussels and calamari strips perfectly combined with sautéed red onions in a creamy tomato-based sauce.", 
+                ingredients: ["Choice of pasta", "Prawn tails", "Mussels", "Calamari strips", "Sautéed red onions", "Creamy tomato-based sauce"], 
+                questionsToAsk: [
+                    "Would you prefer Penne, Fettucine or Spaghetti?",
+                    "Would you like to add Anchovies?"
+                ],
+                tags: ["gourmet"], 
+                modifiers: ["Add anchovies R19.90"] 
+            },
+            { 
+                name: "Cajun Chicken & Prawn", 
+                price: "R169.90", 
+                desc: "Cajun roast chicken strips, garlic prawns and assorted peppers in a rich cream-based sauce.", 
+                ingredients: ["Choice of pasta", "Cajun roast chicken strips", "Garlic prawns", "Assorted peppers", "Rich cream-based sauce"], 
+                questionsToAsk: [
+                    "Would you prefer Penne, Fettucine or Spaghetti?"
+                ],
+                tags: ["gourmet"] 
+            },
+            { 
+                name: "Carne", 
+                price: "R157.90", 
+                desc: "Crispy bacon, salami, chorizo sausage, red onions and assorted peppers, sautéed and combined in a creamy tomato-based sauce.", 
+                ingredients: ["Choice of pasta", "Crispy bacon", "Salami", "Chorizo sausage", "Red onions", "Assorted peppers", "Creamy tomato-based sauce"], 
+                questionsToAsk: [
+                    "Would you prefer Penne, Fettucine or Spaghetti?"
+                ],
+                tags: ["gourmet"] 
+            }
+        ],
+        "Speciality Pastas": [
+            { 
+                name: "Saltimbocca", 
+                price: "R214.90", 
+                desc: "Fillet medallions served on a bed of pasta layered with mozzarella and finished with crispy bacon, ham and brown mushrooms in a rich, cream-based sauce.", 
+                ingredients: ["Choice of pasta base", "Fillet medallions", "Mozzarella layer", "Crispy bacon", "Ham", "Brown mushrooms", "Rich cream-based sauce"], 
+                questionsToAsk: [
+                    "Would you prefer Penne, Fettucine or Spaghetti?"
+                ],
+                tags: ["dp", "speciality"] 
+            },
+            { 
+                name: "Chicken Milano", 
+                price: "R177.90", 
+                desc: "Chicken breast medallions served on a bed of pasta layered with cheddar and finished with sautéed brown mushrooms, red onions, and assorted peppers in a rich, cream-based sauce.", 
+                ingredients: ["Choice of pasta base", "Chicken breast medallions", "Cheddar cheese layer", "Sautéed brown mushrooms", "Red onions", "Assorted peppers", "Rich cream-based sauce"], 
+                questionsToAsk: [
+                    "Would you prefer Penne, Fettucine or Spaghetti?"
+                ],
+                tags: ["speciality"] 
+            }
+        ]
+    }
+},
     breakfast: {
     title: "🍳 Breakfasts (Served until 11AM)",
     subcategories: {
@@ -384,20 +735,197 @@ const MENU_DATA = {
     }
 },
     starters: {
-        title: "🥗 Starters, Subs & Meals",
-        subcategories: {
-            "Starters": [
-                { name: "Flatbread", price: "R74.90", desc: "Garlic or herb", ingredients: ["Pizza dough flatbread", "Garlic butter OR herb butter", "Toasted"], tags: [] },
-                { name: "Mozzarella Flatbread", price: "R106.90", desc: "Garlic or herb flatbread topped with mozzarella.", ingredients: ["Pizza dough flatbread", "Garlic butter OR herb butter", "Mozzarella cheese", "Melted & golden"], tags: [] }
-            ],
-            "Subs": [
-                { name: "Chicken & Mushroom Sub", price: "R99.90", desc: "Plant-based chicken strips and mushrooms mixed with vegan sweet chilli mayo and topped with vegan mozzarella.", ingredients: ["Sub roll", "Plant-based chicken strips", "Sautéed mushrooms", "Vegan sweet chilli mayo", "Vegan mozzarella"], tags: ["vegan"] }
-            ],
-            "Meals": [
-                { name: "Crumbed Veg Stack", price: "R151.90", desc: "Golden brown plant-based chicken-style schnitzel, topped with spicy salsa, fresh avocado and vegan mozzarella sprinkle. Served with chips, stir-fry fettuccine or a garden salad.", ingredients: ["Plant-based chicken-style schnitzel", "Breadcrumb coating", "Spicy salsa", "Fresh avocado", "Vegan mozzarella sprinkle", "Side: Chips OR stir-fry fettuccine OR garden salad"], tags: ["hot", "vegan"] }
-            ]
-        }
-    },
+    title: "🥗 Classic & Bagel Starters",
+    subcategories: {
+        "Classic Starters": [
+            { 
+                name: "Cheesy Garlic Snails", 
+                price: "", 
+                desc: "Snails drenched in garlic butter, topped with mozzarella and baked to perfection. Served with brown bread.", 
+                ingredients: ["Snails", "Garlic butter", "Mozzarella", "Brown bread"], 
+                questionsToAsk: [],
+                tags: [] 
+            },
+            { 
+                name: "Mac & Cheese Balls", 
+                price: "", 
+                desc: "Crispy on the outside, soft cheesy goodness on the inside! Macaroni and cheese rolled into bite-sized nibbles, served with sweet chilli sauce.", 
+                ingredients: ["Macaroni", "Cheese", "Sweet chilli sauce"], 
+                questionsToAsk: [],
+                tags: ["vegetarian"] 
+            },
+            { 
+                name: "Chicken Livers", 
+                price: "", 
+                desc: "Chicken livers and red onions in a creamy tomato and peri-peri sauce, served with a garlic flatbread. CAN ADD BACON", 
+                ingredients: ["Chicken livers", "Red onions", "Creamy tomato sauce", "Peri-peri sauce", "Garlic flatbread"], 
+                questionsToAsk: [
+                    "Would you prefer plain or spicy?",
+                    "Would you like to add bacon?"
+                ],
+                tags: ["hot"] 
+            },
+            { 
+                name: "Flatbread", 
+                price: "", 
+                desc: "Garlic or herb flatbread baked to perfection.", 
+                ingredients: ["Flatbread", "Garlic butter OR herb butter"], 
+                questionsToAsk: [
+                    "Would you prefer garlic or herb flatbread?"
+                ],
+                tags: ["vegetarian"] 
+            },
+            { 
+                name: "Mozzarella Flatbread", 
+                price: "", 
+                desc: "Garlic or herb flatbread topped with mozzarella.", 
+                ingredients: ["Flatbread", "Garlic butter OR herb butter", "Mozzarella cheese"], 
+                questionsToAsk: [
+                    "Would you prefer garlic or herb flatbread?"
+                ],
+                tags: ["vegetarian"] 
+            },
+            { 
+                name: "Chicken Wings", 
+                price: "", 
+                desc: "Chicken wings dusted in seasoned flour, deep-fried until crisp and juicy, tossed and served with your choice of sticky BBQ basting, spicy tikka or peri-peri.", 
+                ingredients: ["Chicken wings", "Seasoned flour", "Choice of sauce (Sticky BBQ, Spicy Tikka, or Peri-peri)"], 
+                questionsToAsk: [
+                    "Would you prefer BBQ, Spicy Tikka or Peri-peri sauce?"
+                ],
+                tags: ["hot"] 
+            },
+            { 
+                name: "Cheesy Nachos - Chicken or Mince", 
+                price: "", 
+                desc: "Layers of corn chips, tomato and cream cheese sauce with your choice of chicken or mince. Baked with mozzarella and Cheddar, topped with spicy salsa and diced avocado. ADD CHILLI FOR A HOTTER BITE.", 
+                ingredients: ["Corn chips", "Tomato and cream cheese sauce", "Chicken OR Mince", "Mozzarella", "Cheddar", "Spicy salsa", "Diced avocado"], 
+                questionsToAsk: [
+                    "Would you prefer chicken or mince?",
+                    "Would you prefer spicy or plain?"
+                ],
+                tags: ["hot"] 
+            },
+            { 
+                name: "Baked Prawn Tails", 
+                price: "", 
+                desc: "Prawn tails baked in garlic and cream, topped with mozzarella and served with brown bread.", 
+                ingredients: ["Prawn tails", "Garlic", "Cream", "Mozzarella", "Brown bread"], 
+                questionsToAsk: [],
+                tags: [] 
+            }
+        ],
+        "Bagel Starters": [
+            { 
+                name: "BLT Bagel", 
+                price: "", 
+                desc: "2 Rashers of bacon, sliced tomato, lettuce and mayo on a freshly toasted bagel with cream cheese.", 
+                ingredients: ["Toasted bagel", "Cream cheese", "2 Rashers bacon", "Sliced tomato", "Lettuce", "Mayo"], 
+                questionsToAsk: [],
+                tags: [] 
+            },
+            { 
+                name: "Pesto Cream Cheese, Salami, Sun-Dried Tomato & Rocket Bagel", 
+                price: "", 
+                desc: "Basil pesto cream cheese, salami, sun-dried tomatoes and rocket on a freshly toasted bagel with cream cheese.", 
+                ingredients: ["Toasted bagel", "Cream cheese", "Basil pesto cream cheese", "Salami", "Sun-dried tomatoes", "Rocket"], 
+                questionsToAsk: [],
+                tags: [] 
+            },
+            { 
+                name: "Chicken Mayo Bagel", 
+                price: "", 
+                desc: "Tangy chicken mayonnaise on a freshly toasted bagel with cream cheese.", 
+                ingredients: ["Toasted bagel", "Cream cheese", "Tangy chicken mayonnaise"], 
+                questionsToAsk: [],
+                tags: [] 
+            }
+        ]
+    }
+},
+lightMeals: {
+    title: "🥖 Light Meals (Subs & Salads)",
+    subcategories: {
+        "Subs": [
+            { 
+                name: "Chicken Supreme Sub", 
+                price: "", 
+                desc: "Roast chicken strips and ham mixed with sweet chilli mayo, topped with mozzarella.", 
+                ingredients: ["Sub roll", "Roast chicken strips", "Ham", "Sweet chilli mayo", "Mozzarella"], 
+                questionsToAsk: [],
+                tags: [] 
+            },
+            { 
+                name: "Carnivore Sub", 
+                price: "", 
+                desc: "Ham, salami and chorizo sausage with Italian tomato sauce, topped with mozzarella.", 
+                ingredients: ["Sub roll", "Ham", "Salami", "Chorizo sausage", "Italian tomato sauce", "Mozzarella"], 
+                questionsToAsk: [],
+                tags: [] 
+            },
+            { 
+                name: "Chicken & Mushroom Sub", 
+                price: "", 
+                desc: "Roast chicken strips and mushrooms mixed with sweet chilli mayo, topped with mozzarella.", 
+                ingredients: ["Sub roll", "Roast chicken strips", "Mushrooms", "Sweet chilli mayo", "Mozzarella"], 
+                questionsToAsk: [],
+                tags: [] 
+            },
+            { 
+                name: "Steak, Onion & Mushroom Sub", 
+                price: "", 
+                desc: "Steak strips in your choice of BBQ, peri-peri or sweet and spicy tikka sauce, with mushrooms and red onions, topped with mozzarella.", 
+                ingredients: ["Sub roll", "Steak strips", "Mushrooms", "Red onions", "Mozzarella", "Choice of sauce (BBQ, Peri-peri, or Sweet & Spicy Tikka)"], 
+                questionsToAsk: [
+                    "Would you prefer BBQ, Peri-peri or sweet & spicy tikka sauce?"
+                ],
+                tags: ["hot"] 
+            }
+        ],
+        "Salads": [
+            { 
+                name: "Chicken Caesar Salad", 
+                price: "", 
+                desc: "Garden salad of lettuce, cherry tomatoes, cucumber and Parmesan cheese tossed in a vinaigrette dressing, topped with Cajun roast chicken strips, served with a boiled egg and freshly sliced avocado. CAN ADD ANCHOVIES", 
+                ingredients: ["Lettuce", "Cherry tomatoes", "Cucumber", "Parmesan cheese", "Vinaigrette dressing", "Cajun roast chicken strips", "Boiled egg", "Freshly sliced avocado"], 
+                questionsToAsk: [
+                    "Would you like to add anchovies?"
+                ],
+                tags: [] 
+            },
+            { 
+                name: "Greek Salad", 
+                price: "", 
+                desc: "Garden salad of lettuce, cherry tomatoes, carrots, cucumber, assorted peppers and red onions, topped with Danish feta and olives.", 
+                ingredients: ["Lettuce", "Cherry tomatoes", "Carrots", "Cucumber", "Assorted peppers", "Red onions", "Danish feta", "Olives"], 
+                questionsToAsk: [],
+                tags: ["vegetarian"] 
+            },
+            { 
+                name: "Avo Del Pollo*", 
+                price: "", 
+                desc: "Tangy chicken mayonnaise on a bed of lettuce and cherry tomatoes, served with sliced avocado drizzled with vinaigrette. Served with a garlic or herb flatbread. CAN UPGRADE FLATBREAD TO A THREE CHEESE FLATBREAD FOR R30.90 EXTRA", 
+                ingredients: ["Tangy chicken mayonnaise", "Lettuce", "Cherry tomatoes", "Sliced avocado", "Vinaigrette", "Garlic OR herb flatbread"], 
+                questionsToAsk: [
+                    "Would you prefer Garlic or herb for your flatbread?",
+                    "Would you prefer to upgrade your flatbread to a three cheese flatbread?"
+                ],
+                tags: [] 
+            },
+            { 
+                name: "Avo Del Mare*", 
+                price: "", 
+                desc: "Tangy seafood cocktail on a bed of lettuce and cherry tomatoes, served with sliced avocado drizzled with vinaigrette. Served with a garlic or herb flatbread. CAN UPGRADE FLATBREAD TO A THREE CHEESE FLATBREAD FOR R30.90 EXTRA", 
+                ingredients: ["Tangy seafood cocktail", "Lettuce", "Cherry tomatoes", "Sliced avocado", "Vinaigrette", "Garlic OR herb flatbread"], 
+                questionsToAsk: [
+                    "Would you prefer Garlic or herb for your flatbread?",
+                    "Would you prefer to upgrade your flatbread to a three cheese flatbread?"
+                ],
+                tags: [] 
+            }
+        ]
+    }
+},
     vegan: {
         title: "🌱 Vegan Friendly",
         subcategories: {

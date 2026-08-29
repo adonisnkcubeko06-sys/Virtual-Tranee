@@ -506,16 +506,7 @@ footer.app-footer{
     <div class="menu-grid" id="menuGrid"></div>
   </section>
 
-const questionsHtml = item.questionsToAsk && item.questionsToAsk.length > 0 
-    ? `
-        <div class="questions-to-ask">
-            <strong>Questions to Ask:</strong>
-            <ul>
-                ${item.questionsToAsk.map(q => `<li>${q}</li>`).join('')}
-            </ul>
-        </div>
-      ` 
-    : '';
+
   <!-- ================= FLASHCARDS + QUIZ MODULE ================= -->
   <section class="view" id="view-quiz" role="tabpanel" aria-labelledby="tab-quiz">
     <div class="view-head">
